@@ -14,29 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.jackrabbit.server.remoting.davex;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+package org.apache.jackrabbit.server.io;
+
+import javax.jcr.Session;
 
 /**
- * Test suite that includes all testcases for package org.apache.jackrabbit.server.remoting.davex.
+ * Implements a simple delete context
  */
-public class TestAll extends TestCase {
+public class DeleteContextImpl implements  DeleteContext {
+
+    private final Session session;
+
+    public DeleteContextImpl(Session session) {
+        this.session = session;
+    }
 
     /**
-     * Returns a <code>Test</code> suite that executes all tests inside this
-     * package.
+     * @see DeleteContext#getSession()
      */
-    public static Test suite() {
-        TestSuite suite = new TestSuite("org.apache.jackrabbit.server.remoting.davex tests");
-
-        suite.addTestSuite(DiffParserTest.class);
-        suite.addTestSuite(JsonDiffHandlerImportTest.class);
-        suite.addTestSuite(JsonDiffHandlerTest.class);
-        suite.addTestSuite(BatchReadConfigTest.class);
-
-        return suite;
+    public Session getSession() {
+        return this.session;
     }
 }
